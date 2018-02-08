@@ -1,1 +1,47 @@
 ---
+
+- hosts: all
+  tasks:
+  
+   - block: 
+ 
+       - copy:
+           src: app-config.conf 
+           dest: /etc
+           owner: root
+           mode: 0644
+           remote_src: yes
+
+       - include_vars: /etc/app-config.conf
+       - set_fact:
+           user: "{{ users1 }}"
+           paswword:  "{{ password2 }}"
+           test: "{{ server }}"
+           connection: "{{ conndbc }}"
+
+       - debug:
+           msg: "USER - {{user}} PASSWORD - {{paswword}} SERVER - {{test}} CONNECTION - {{connection}}"
+
+
+     when: inventory_hostname in groups['prod']
+
+   - block: 
+ 
+       - copy:
+           src: app-config.conf 
+           dest: /etc
+           owner: root
+           mode: 0644
+           remote_src: yes
+
+       - include_vars: /etc/app-config.conf
+       - set_fact:
+           user: "{{ users1 }}"
+           paswword:  "{{ password2 }}"
+           test: "{{ server }}"
+           connection: "{{ conndbc }}"
+
+       - debug:
+           msg: "USER - {{user}} PASSWORD - {{paswword}} SERVER - {{test}} CONNECTION - {{connection}}"
+
+     when: inventory_hostname in groups['dev']
