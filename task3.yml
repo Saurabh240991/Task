@@ -11,7 +11,7 @@
 
    - name: Unarchive the files 
      unarchive:
-       src: automation.tar.gz
+       src: /home/saurabh/automation.tar.gz
        dest: /
        remote_src: yes
 
