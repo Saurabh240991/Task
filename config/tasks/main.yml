@@ -1,10 +1,8 @@
 ---
 
 - hosts: all
-  tasks:
-  
+  tasks:  
    - block: 
- 
        - copy:
            src: app-config.conf 
            dest: /etc
@@ -21,12 +19,9 @@
 
        - debug:
            msg: "USER - {{user}} PASSWORD - {{paswword}} SERVER - {{test}} CONNECTION - {{connection}}"
-
-
      when: inventory_hostname in groups['prod']
 
    - block: 
- 
        - copy:
            src: app-config.conf 
            dest: /etc
@@ -40,8 +35,6 @@
            paswword:  "{{ password2 }}"
            test: "{{ server }}"
            connection: "{{ conndbc }}"
-
        - debug:
            msg: "USER - {{user}} PASSWORD - {{paswword}} SERVER - {{test}} CONNECTION - {{connection}}"
-
      when: inventory_hostname in groups['dev']
